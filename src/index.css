@@ -142,6 +142,48 @@ All colors MUST be HSL.
     opacity: 0.1;
   }
 
+  /* Leadership Card Styles */
+  .leadership-card {
+    @apply relative overflow-hidden rounded-2xl backdrop-blur-sm border-2 border-primary/30;
+    background: linear-gradient(145deg, hsl(240, 10%, 3.9%), hsl(263, 70%, 10%));
+    box-shadow: 0 12px 40px hsl(263, 70%, 50%, 0.2), var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .leadership-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 60px hsl(263, 70%, 50%, 0.4), var(--shadow-glow);
+    border-color: hsl(var(--primary-glow));
+  }
+
+  .leadership-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    z-index: -1;
+  }
+
+  .leadership-card:hover::before {
+    opacity: 0.15;
+  }
+
+  .leadership-avatar {
+    @apply relative overflow-hidden rounded-full w-32 h-32 mx-auto mb-6 border-2 border-primary/50;
+    transition: var(--transition-smooth);
+  }
+
+  .leadership-card:hover .leadership-avatar {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px hsl(var(--primary-glow) / 0.7);
+    border-color: hsl(var(--primary-glow));
+  }
+
   .team-avatar {
     @apply relative overflow-hidden rounded-full w-24 h-24 mx-auto mb-4;
     transition: var(--transition-smooth);
@@ -158,7 +200,8 @@ All colors MUST be HSL.
     transition: var(--transition-smooth);
   }
 
-  .team-card:hover .team-description {
+  .team-card:hover .team-description,
+  .leadership-card:hover .team-description {
     opacity: 1;
   }
 
@@ -167,5 +210,21 @@ All colors MUST be HSL.
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .department-header {
+    @apply relative mb-8 text-center;
+  }
+
+  .department-header::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
   }
 }
